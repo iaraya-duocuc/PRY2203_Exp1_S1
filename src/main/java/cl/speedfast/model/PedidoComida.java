@@ -6,8 +6,8 @@ public class PedidoComida extends Pedido {
 
     private boolean conMochilaTermica;
 
-    public PedidoComida(int id, String direccion, boolean conMochilaTermica) {
-        super(id, direccion, AppConfig.TipoPedido.COMIDA);
+    public PedidoComida(int id, String direccion, boolean conMochilaTermica, double distanciaKm) {
+        super(id, direccion, AppConfig.TipoPedido.COMIDA, distanciaKm);
         this.conMochilaTermica = conMochilaTermica;
     }
 
@@ -25,4 +25,11 @@ public class PedidoComida extends Pedido {
                     " no tiene mochila térmica. No se puede asignar.");
         }
     }
+
+    @Override
+    public int calcularTiempoEntrega() {
+        return 15 + (int) (2 * getDistanciaKm());
+    }
 }
+
+

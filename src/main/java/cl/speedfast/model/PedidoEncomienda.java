@@ -7,8 +7,8 @@ public class PedidoEncomienda extends Pedido {
     private double peso;
     private boolean embalajeCorrecto;
 
-    public PedidoEncomienda(int id, String direccion, double peso, boolean embalajeCorrecto) {
-        super(id, direccion, AppConfig.TipoPedido.ENCOMIENDA);
+    public PedidoEncomienda(int id, String direccion, double peso, boolean embalajeCorrecto, double distanciaKm) {
+        super(id, direccion, AppConfig.TipoPedido.ENCOMIENDA, distanciaKm);
         this.peso = peso;
         this.embalajeCorrecto = embalajeCorrecto;
     }
@@ -26,5 +26,10 @@ public class PedidoEncomienda extends Pedido {
         } else {
             System.out.println("ERROR: encomienda inválida para asignación.");
         }
+    }
+
+    @Override
+    public int calcularTiempoEntrega() {
+        return 20 + (int) Math.round(1.5 * getDistanciaKm());
     }
 }

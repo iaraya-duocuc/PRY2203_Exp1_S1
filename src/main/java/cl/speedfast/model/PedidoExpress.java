@@ -6,8 +6,8 @@ public class PedidoExpress extends Pedido {
 
     private boolean hayRepartidorDisponible;
 
-    public PedidoExpress(int id, String direccion, boolean disponible) {
-        super(id, direccion, AppConfig.TipoPedido.EXPRESS);
+    public PedidoExpress(int id, String direccion, boolean disponible, double distanciaKm) {
+        super(id, direccion, AppConfig.TipoPedido.EXPRESS, distanciaKm);
         this.hayRepartidorDisponible = disponible;
     }
 
@@ -24,6 +24,15 @@ public class PedidoExpress extends Pedido {
         } else {
             System.out.println("ERROR: no hay repartidor cercano disponible.");
         }
+    }
+
+    @Override
+    public int calcularTiempoEntrega() {
+        int tiempo = 10;
+        if (getDistanciaKm() > 5) {
+            tiempo += 5;
+        }
+        return tiempo;
     }
 }
 
