@@ -1,5 +1,7 @@
 package cl.speedfast.model;
 
+import java.util.List;
+
 public interface Rastreable {
-    void verHistorial();
+    List<String> verHistorial();
 }
