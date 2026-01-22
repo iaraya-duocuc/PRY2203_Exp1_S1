@@ -56,10 +56,26 @@ public abstract class Pedido implements Cancelable, Despachable, Rastreable{
     // El historial solo registra DESPACHOS (no cancelaciones)
     protected void registrarDespacho() {
         historial.add(
-                getClass().getSimpleName() +
+                "Pedido " + tipoPedido.obtenerNombre() +
                         " #" + idPedido +
                         " – entregado por " + repartidorAsignado
         );
+    }
+
+    @Override
+    public void despachar() {
+        if (!getCancelado()) {
+            System.out.println("Pedido " + tipoPedido.obtenerNombre() + " despachado correctamente.");
+            registrarDespacho();
+        } else {
+            System.out.println("No se puede despachar un pedido cancelado.");
+        }
+    }
+
+    @Override
+    public void cancelar() {
+        setCancelado(true);
+        System.out.println("Cancelando Pedido " + tipoPedido.obtenerNombre() + " #" + getIdPedido() + "... \nPedido cancelado exitosamente.");
     }
 
     @Override

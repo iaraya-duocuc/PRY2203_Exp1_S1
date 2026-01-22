@@ -36,20 +36,5 @@ public class PedidoExpress extends Pedido {
         return tiempo;
     }
 
-    @Override
-    public void despachar() {
-        if (!getCancelado()) {
-            System.out.println("Pedido Express despachado correctamente.");
-            registrarDespacho();
-        } else {
-            System.out.println("No se puede despachar un pedido cancelado.");
-        }
-    }
-
-    @Override
-    public void cancelar() {
-        setCancelado(true);
-        System.out.println("Cancelando Pedido Express #" + getIdPedido() + "... \nPedido cancelado exitosamente.");
-    }
 }
 

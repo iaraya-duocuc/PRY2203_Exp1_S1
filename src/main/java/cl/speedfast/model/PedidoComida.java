@@ -32,21 +32,6 @@ public class PedidoComida extends Pedido {
         return 15 + (int) (2 * getDistanciaKm());
     }
 
-    @Override
-    public void despachar() {
-        if (!getCancelado()) {
-            System.out.println("Pedido Comida despachado correctamente.");
-            registrarDespacho();
-        } else {
-            System.out.println("No se puede despachar un pedido cancelado.");
-        }
-    }
-
-    @Override
-    public void cancelar() {
-        setCancelado(true);
-        System.out.println("Cancelando Pedido Comida #" + getIdPedido() + "... \nPedido cancelado exitosamente.");
-    }
 }
 
 

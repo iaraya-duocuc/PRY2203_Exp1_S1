@@ -33,20 +33,4 @@ public class PedidoEncomienda extends Pedido {
     public int calcularTiempoEntrega() {
         return 20 + (int) Math.round(1.5 * getDistanciaKm());
     }
-
-    @Override
-    public void despachar() {
-        if (!getCancelado()) {
-            System.out.println("Pedido Encomienda despachado correctamente.");
-            registrarDespacho();
-        } else {
-            System.out.println("No se puede despachar un pedido cancelado.");
-        }
-    }
-
-    @Override
-    public void cancelar() {
-        setCancelado(true);
-        System.out.println("Cancelando Pedido Encomienda #" + getIdPedido() + "... \nPedido cancelado exitosamente.");
-    }
 }
