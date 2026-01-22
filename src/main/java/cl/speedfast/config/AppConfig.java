@@ -9,7 +9,7 @@ package cl.speedfast.config;
 public class AppConfig {
 
     /**
-     * Enumeración que representa los tipos de empleados dentro del sistema.
+     * Enumeración que representa los tipos de pedidos dentro del sistema.
      */
     public enum TipoPedido {
         EXPRESS("Express"),
@@ -19,18 +19,18 @@ public class AppConfig {
         private final String nombre;
 
         /**
-         * Constructor que asigna el nombre legible al tipo de empleado.
+         * Constructor que asigna el nombre legible al tipo de pedido.
          *
-         * @param nombre Nombre descriptivo del tipo de empleado.
+         * @param nombre Nombre descriptivo del tipo de pedido.
          */
         TipoPedido(String nombre) {
             this.nombre = nombre;
         }
 
         /**
-         * Retorna el nombre legible del tipo de empleado.
+         * Retorna el nombre legible del tipo de pedido.
          *
-         * @return Nombre del tipo de empleado.
+         * @return Nombre del tipo de pedido.
          */
         public String obtenerNombre() {
             return nombre;
