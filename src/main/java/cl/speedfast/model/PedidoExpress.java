@@ -19,7 +19,8 @@ public class PedidoExpress extends Pedido {
     @Override
     public void asignarRepartidor(String nombreRepartidor) {
         if (hayRepartidorDisponible) {
-            System.out.println("Repartidor " + nombreRepartidor +
+            setRepartidorAsignado(nombreRepartidor);
+            System.out.println("Repartidor " + getRepartidorAsignado() +
                     " asignado por cercanía inmediata.");
         } else {
             System.out.println("ERROR: no hay repartidor cercano disponible.");
@@ -33,6 +34,22 @@ public class PedidoExpress extends Pedido {
             tiempo += 5;
         }
         return tiempo;
+    }
+
+    @Override
+    public void despachar() {
+        if (!getCancelado()) {
+            System.out.println("Pedido Express despachado correctamente.");
+            registrarDespacho();
+        } else {
+            System.out.println("No se puede despachar un pedido cancelado.");
+        }
+    }
+
+    @Override
+    public void cancelar() {
+        setCancelado(true);
+        System.out.println("Cancelando Pedido Express #" + getIdPedido() + "... \nPedido cancelado exitosamente.");
     }
 }
 

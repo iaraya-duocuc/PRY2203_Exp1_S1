@@ -18,7 +18,8 @@ public class PedidoComida extends Pedido {
 
     public void asignarRepartidor(String nombreRepartidor) {
         if (conMochilaTermica) {
-            System.out.println("Repartidor " + nombreRepartidor +
+            setRepartidorAsignado(nombreRepartidor);
+            System.out.println("Repartidor " + getRepartidorAsignado() +
                     " asignado al pedido de comida (tiene mochila térmica).");
         } else {
             System.out.println("ERROR: " + nombreRepartidor +
@@ -29,6 +30,22 @@ public class PedidoComida extends Pedido {
     @Override
     public int calcularTiempoEntrega() {
         return 15 + (int) (2 * getDistanciaKm());
+    }
+
+    @Override
+    public void despachar() {
+        if (!getCancelado()) {
+            System.out.println("Pedido Comida despachado correctamente.");
+            registrarDespacho();
+        } else {
+            System.out.println("No se puede despachar un pedido cancelado.");
+        }
+    }
+
+    @Override
+    public void cancelar() {
+        setCancelado(true);
+        System.out.println("Cancelando Pedido Comida #" + getIdPedido() + "... \nPedido cancelado exitosamente.");
     }
 }
 
