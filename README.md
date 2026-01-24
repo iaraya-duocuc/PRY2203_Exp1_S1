@@ -1,7 +1,3 @@
-Perfecto, aqui va una version **mucho mas simple**:
-
----
-
 # SpeedFast - Pedidos en Java
 
 Proyecto Java que simula un sistema de pedidos para una empresa de delivery.
