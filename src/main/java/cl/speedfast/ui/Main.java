@@ -8,20 +8,28 @@ import cl.speedfast.model.PedidoExpress;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase principal de la aplicacion.
+ */
 public class Main {
+
+    /**
+     * Punto de entrada del programa.
+     */
     public static void main(String[] args) {
 
+        // Creacion de pedidos de distintos tipos
         Pedido comida = new PedidoComida(1, "Av. Central 123", true, 4.5);
         Pedido encomienda = new PedidoEncomienda(2, "Calle Sur 456", 10, true, 6.0);
         Pedido express = new PedidoExpress(3, "Los Pinos 789", false, 1.1);
 
-        // Se agregan los pedidos a una colección para mayor flexibilidad
+        // Coleccion de pedidos
         List<Pedido> pedidos = new ArrayList<>();
         pedidos.add(comida);
         pedidos.add(encomienda);
         pedidos.add(express);
 
-        // Pedido Comida
+        // Flujo de pedido comida
         comida.mostrarResumen();
         comida.asignarRepartidor("Luis Perales");
         System.out.println("Tiempo estimado: " +
@@ -30,7 +38,7 @@ public class Main {
 
         System.out.println();
 
-        // Pedido Encomienda
+        // Flujo de pedido encomienda
         encomienda.mostrarResumen();
         encomienda.asignarRepartidor("Daniela Tapia");
         System.out.println("Tiempo estimado: " +
@@ -39,14 +47,14 @@ public class Main {
 
         System.out.println();
 
-        // Pedido Express (ej. cancelado)
+        // Flujo de pedido express
         express.mostrarResumen();
         express.asignarRepartidor("Pedro Soto");
         System.out.println("Tiempo estimado: " +
                 express.calcularTiempoEntrega() + " minutos");
-        express.cancelar();
+        express.cancelar(); // cancelación para efectos demostrativos
 
-        // Historial de despachos
+        // Mostrar historial de despachos
         System.out.println();
         System.out.println("Historial:");
 

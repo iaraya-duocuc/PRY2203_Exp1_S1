@@ -5,7 +5,11 @@ import cl.speedfast.config.AppConfig;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Pedido implements Cancelable, Despachable, Rastreable{
+/**
+ * Clase abstracta que representa un pedido dentro del sistema.
+ */
+public abstract class Pedido implements Cancelable, Despachable, Rastreable {
+
     private int idPedido;
     private String direccion;
     private AppConfig.TipoPedido tipoPedido;
@@ -14,6 +18,9 @@ public abstract class Pedido implements Cancelable, Despachable, Rastreable{
     private List<String> historial = new ArrayList<>();
     private String repartidorAsignado = "No asignado";
 
+    /**
+     * Constructor base de un pedido.
+     */
     public Pedido(int idPedido, String direccion, AppConfig.TipoPedido tipoPedido, double distanciaKm) {
         this.idPedido = idPedido;
         this.direccion = direccion;
@@ -30,30 +37,41 @@ public abstract class Pedido implements Cancelable, Despachable, Rastreable{
     public String getRepartidorAsignado() { return repartidorAsignado; }
 
     // Setters
-
     public void setCancelado(boolean cancelado) { this.cancelado = cancelado; }
     public void setRepartidorAsignado(String repartidorAsignado) {this.repartidorAsignado = repartidorAsignado; }
 
-    // Para sobreescritura
+    /**
+     * Asignacion generica de repartidor.
+     * Puede ser sobreescrita por las subclases.
+     */
     public void asignarRepartidor() {
-        //System.out.println("Asignando repartidor genérico al pedido " + idPedido);
+        // Implementacion generica
     }
 
-    // Sobrecarga
+    /**
+     * Asigna un repartidor por nombre.
+     */
     public void asignarRepartidor(String nombreRepartidor) {
-        //System.out.println("Repartidor " + nombreRepartidor + " asignado al pedido " + idPedido);
+        // Implementacion genérica con nombre
     }
 
-    // Abstracta ya que no hay fórmula genérica aplicable a todas las clases que heredan de Pedido
+    /**
+     * Calcula el tiempo estimado de entrega.
+     */
     public abstract int calcularTiempoEntrega();
 
+    /**
+     * Muestra un resumen basico del pedido.
+     */
     public void mostrarResumen() {
         System.out.println("Pedido " + tipoPedido.obtenerNombre() + " #" + idPedido);
         System.out.println("Dirección: " + direccion);
         System.out.println("Distancia: " + distanciaKm + " km");
     }
 
-    // El historial solo registra DESPACHOS (no cancelaciones)
+    /**
+     * Registra un despacho en el historial.
+     */
     protected void registrarDespacho() {
         historial.add(
                 "Pedido " + tipoPedido.obtenerNombre() +
@@ -62,6 +80,9 @@ public abstract class Pedido implements Cancelable, Despachable, Rastreable{
         );
     }
 
+    /**
+     * Ejecuta el despacho del pedido si no esta cancelado.
+     */
     @Override
     public void despachar() {
         if (!getCancelado()) {
@@ -72,12 +93,18 @@ public abstract class Pedido implements Cancelable, Despachable, Rastreable{
         }
     }
 
+    /**
+     * Cancela el pedido.
+     */
     @Override
     public void cancelar() {
         setCancelado(true);
         System.out.println("Cancelando Pedido " + tipoPedido.obtenerNombre() + " #" + getIdPedido() + "... \nPedido cancelado exitosamente.");
     }
 
+    /**
+     * Retorna el historial de despachos.
+     */
     @Override
     public List<String> verHistorial() {
         return historial;
