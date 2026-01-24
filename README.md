@@ -26,8 +26,8 @@ La clase `Main` crea pedidos, los procesa y muestra el historial por consola.
 
 ```
 config   -> configuraciones y enums
-model    -> logica de negocio
-ui       -> ejecucion del programa
+model    -> lógica de negocio
+ui       -> ejecución del programa
 ```
 
 ---
